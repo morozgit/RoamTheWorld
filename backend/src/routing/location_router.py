@@ -1,4 +1,9 @@
-from fastapi import APIRouter
+from src.schemas.location_schemas import SLocationAdd, SLocationId, SLocation
+from sqlalchemy.ext.asyncio import AsyncSession
+from src.repositories.location_repository import LocationRepository
+from fastapi import APIRouter, Depends
+from src.config.db.session import get_async_session
+import rollbar
 
 location_router = APIRouter(
     prefix="/api/location",
@@ -6,25 +11,21 @@ location_router = APIRouter(
 )
 
 
+@location_router.post("", response_model=SLocationId)
+async def add_location(
+    location: SLocationAdd, db: AsyncSession = Depends(get_async_session)
+) -> SLocationId:
+    try:
+        location_id = await LocationRepository.add_one(location)
+        return SLocationId(ok=True, location_id=location_id)
+    except Exception as e:
+        rollbar.report_message(str(e))
+
+
 @location_router.get("/all_locations")
-async def get_all_locations():
-    return [
-        {
-            "id": 1,
-            "name": "Локация 1",
-            "description": "Описание 1",
-            "image": "location1.jpg",
-        },
-        {
-            "id": 2,
-            "name": "Локация 2",
-            "description": "Описание 2",
-            "image": "location2.jpg",
-        },
-        {
-            "id": 3,
-            "name": "Локация 3",
-            "description": "Описание 3",
-            "image": "location3.jpg",
-        },
-    ]
+async def get_all_locations() -> list[SLocation]:
+    try:
+        locations = await LocationRepository.find_all()
+        return locations
+    except Exception as e:
+        rollbar.report_message(str(e))

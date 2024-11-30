@@ -1,7 +1,7 @@
 from .base_models import Base
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from typing import List
-from .track_models import TrackModels
+from src.models.track_models import TrackModels
 
 
 class LocationModels(Base):
@@ -10,7 +10,7 @@ class LocationModels(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None]
-    image: Mapped[str | None]
+    image_url: Mapped[str | None]
     track: Mapped[List["TrackModels"]] = relationship(
         back_populates="location",
     )

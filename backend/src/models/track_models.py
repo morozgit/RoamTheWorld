@@ -2,7 +2,11 @@ from sqlalchemy import ForeignKey, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base_models import Base
-from .location_models import LocationModels
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from src.models.location_models import LocationModels
 
 
 class TrackModels(Base):
