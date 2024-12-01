@@ -16,14 +16,12 @@ class S3Client:
             "Contents", []
         )
         return [
-            f"{settings.S3_ENDPOINT_URL}/\
-            {settings.S3_BUCKET_NAME}/\
-            {content['Key']}"
+            f"{settings.S3_ENDPOINT_URL}/{settings.S3_BUCKET_NAME}/{content['Key']}"
             for content in contents
         ]
 
     def find_url_by_name(self, filename):
-        public_urls = self.list_public_urls()
+        public_urls = self.list_obj_urls()
         for url in public_urls:
             if filename in url:
                 return url

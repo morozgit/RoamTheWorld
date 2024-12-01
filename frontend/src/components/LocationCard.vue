@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     imageSrc() {
-      return this.location.image ? `/images/${this.location.image}` : '/images/default-image.jpg';
+      return this.location.image_url ? this.location.image_url : '/images/default-image.jpg';
     }
   },
   methods: {
