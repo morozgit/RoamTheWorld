@@ -14,7 +14,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Запускаем сборку проекта
-RUN npm run build -- --verbose
+RUN npm run build --verbose
 
 # Производственный образ Nginx
 FROM nginx:stable-alpine
