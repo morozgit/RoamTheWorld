@@ -33,6 +33,8 @@ async def get_all_locations(
 ) -> list[SLocation]:
     try:
         locations = await LocationRepository.get_all(db)
+        if not locations:
+            return []
         print("locations", locations)
         return locations
     except Exception as e:

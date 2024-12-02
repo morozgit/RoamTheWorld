@@ -17,9 +17,9 @@ class LocationRepository(AbstractRepository):
 
     async def get_all(db) -> list[SLocation]:
         query = select(LocationModels)
-        result = await db.execute(query)
-        print("query", result)
-        return result.scalars().all()
+        location_query = await db.execute(query)
+        locations = location_query.scalars().all()
+        return locations if locations else []
 
     async def get_one(self, location_id: int) -> SLocation:
         pass

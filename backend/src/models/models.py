@@ -28,7 +28,7 @@ class LocationModels(Base):
     )
 
     def __repr__(self):
-        return f"<LocationOrm(id={self.id}, name={self.name})>"
+        return f"<LocationModels(id={self.id}, name={self.name})>"
 
 
 class TrackModels(Base):
