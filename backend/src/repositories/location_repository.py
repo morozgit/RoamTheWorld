@@ -20,6 +20,8 @@ class LocationRepository(AbstractRepository):
             query = select(LocationModels)
             result = await session.execute(query)
             locations = result.scalars().all()
+            if not locations:
+                return []
             location_schemas = [SLocation.model_validate(loc.__dict__) for loc in locations]
             return location_schemas
 
