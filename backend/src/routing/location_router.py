@@ -24,7 +24,7 @@ async def add_location(
         location_id = await location_repository.add_one(location)
         return SLocationId(ok=True, location_id=location_id)
     except Exception as e:
-        rollbar.report_message(str(e))
+        rollbar.report_message(f"Error in add_location: {e}")
 
 
 @location_router.get("/all_locations")
@@ -32,10 +32,8 @@ async def get_all_locations(
     db: AsyncSession = Depends(get_async_session),
 ) -> list[SLocation]:
     try:
-        locations = await LocationRepository.get_all(db)
-        if not locations:
-            return []
-        print("locations", locations)
+        repository = LocationRepository()
+        locations = await repository.get_all()
         return locations
     except Exception as e:
-        rollbar.report_message(str(e))
+        rollbar.report_message(f"Error in get_all_locations: {e}")
