@@ -25,6 +25,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.vscode/
+.ruff_cache/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -123,10 +125,13 @@ celerybeat.pid
 
 # Environments
 .env
+.env.development
+.env.production
 .venv
 env/
 venv/
 ENV/
+node_modules/
 env.bak/
 venv.bak/
 
