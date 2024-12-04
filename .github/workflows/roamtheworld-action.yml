@@ -16,4 +16,4 @@ jobs:
         with:
           python-version: "3.12"
       - name: Ruff
-        - uses: astral-sh/ruff-action@v2
+        uses: astral-sh/ruff-action@v2
