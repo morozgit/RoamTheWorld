@@ -6,14 +6,15 @@ on:
 
 jobs:
   lint:
-    name: Lint
+    name: Code Linting and Analysis
     runs-on: ubuntu-latest
     steps:
-      - name: Check out source repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Set up Python
+      - name: Setup Python Environment
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Ruff
+      - name: Run Ruff Linter
         uses: astral-sh/ruff-action@v2
+

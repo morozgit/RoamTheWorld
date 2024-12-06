@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     goToDetail() {
-      this.$router.push({ name: 'LocationDetail', params: { location_id: this.location.id } });
+      this.$router.push({ name: 'TracksPage', params: { location_id: this.location.id } });
     }
   }
 }
