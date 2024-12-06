@@ -2,7 +2,7 @@ from src.config.db.session import get_async_session
 from sqlalchemy.ext.asyncio import AsyncSession
 import rollbar
 from fastapi import APIRouter, Depends
-from src.schemas.track_schemas import STrack, STrackAdd, STrackId
+from src.schemas.track_schemas import STrackAdd, STrackId
 from src.repositories.track_repository import TrackRepository
 from src.S3.s3_client import S3Client
 
