@@ -26,6 +26,7 @@ async def add_track(
         return STrackId(ok=True, track_id=track_id)
     except Exception as e:
         rollbar.report_message(f"Error in add_track: {e}")
+        return []
 
 
 @track_router.get("/{track_id}")
@@ -35,3 +36,4 @@ async def get_track(track_id: int):
         return tracks
     except Exception as e:
         rollbar.report_message(str(e))
+        return -1

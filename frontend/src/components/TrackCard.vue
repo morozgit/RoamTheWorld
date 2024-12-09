@@ -16,7 +16,7 @@
     },
     computed: {
       imageSrc() {
-        return this.track.image ? this.track.image_url : '/images/default-image.jpg';
+        return this.track.image_url ? this.track.image_url : '/images/default-image.jpg';
       },
     },
     methods: {
@@ -27,18 +27,18 @@
   };
   </script>
 
-  <style scoped>
-  .location-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .location-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  </style>
+<style scoped>
+.track-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.track-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+</style>

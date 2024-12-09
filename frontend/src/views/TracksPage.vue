@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-.location-list {
+.tracks-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

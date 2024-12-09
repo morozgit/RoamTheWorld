@@ -6,6 +6,9 @@ from src.config.db.session import async_session_maker
 
 
 class TrackRepository(AbstractRepository):
+    def __init__(self):
+        super().__init__(STrack)
+
     async def add_one(self, track: STrack) -> int:
         async with async_session_maker() as session:
             track_dict = track.model_dump()
@@ -20,8 +23,8 @@ class TrackRepository(AbstractRepository):
             result = await session.execute(select(TrackModels).filter(TrackModels.id == track_id))
             track = result.scalar_one_or_none()
             return track
-    
-    async def get_location_tracks(cls, location_id: int) -> list[STrack]:
+
+    async def get_all(self, location_id: int) -> list[STrack]:
         async with async_session_maker() as session:
             result = await session.execute(select(TrackModels).filter_by(location_id=location_id))
             tracks = result.scalars().all()

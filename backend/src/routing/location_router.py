@@ -34,22 +34,20 @@ async def get_all_locations(
     db: AsyncSession = Depends(get_async_session),
 ) -> list[SLocation]:
     try:
-        print("get_all_locations")
-        repository = LocationRepository()
-        print("repository", repository)
-        locations = await repository.get_all()
+        location_repository = LocationRepository()
+        locations = await location_repository.get_all()
         return locations
     except Exception as e:
         rollbar.report_message(f"Error in get_all_locations: {e}")
-        print(e)
         return []
-
 
 
 @location_router.get("/{location_id}")
 async def get_location(location_id: int):
     try:
-        tracks = await TrackRepository.get_location_tracks(location_id)
+        print("get_location", location_id)
+        track_repository = TrackRepository()
+        tracks = await track_repository.get_all(location_id)
         return tracks
     except Exception as e:
         rollbar.report_message(f"Error in get_location: {e}")

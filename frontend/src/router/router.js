@@ -6,7 +6,7 @@ import TracksPage from '@/views/TracksPage.vue';
 const routes = [
   { path: '/', name: 'Home', component: LocationsPage },
   { path: '/locations', name: 'Locations', component: LocationsPage },
-  { path: '/tracks/:location_id', name: 'TracksPage', component: TracksPage },
+  { path: '/location/:location_id', name: 'TracksPage', component: TracksPage },
 ];
 
 const router = createRouter({
