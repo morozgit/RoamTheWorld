@@ -38,7 +38,7 @@ class TrackModels(Base):
     name: Mapped[str]
     short_description: Mapped[str | None]
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
-    image: Mapped[str | None]
+    image_url: Mapped[str | None]
     location_id: Mapped[int] = mapped_column(
         ForeignKey("locations.id", ondelete="CASCADE")
     )

@@ -1,0 +1,20 @@
+name: CI/CD Roam The World
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  lint:
+    name: Code Linting and Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Ruff Linter
+        uses: astral-sh/ruff-action@v2
+
