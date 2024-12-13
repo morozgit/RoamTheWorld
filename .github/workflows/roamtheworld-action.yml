@@ -17,4 +17,6 @@ jobs:
           python-version: "3.12"
       - name: Run Ruff Linter
         uses: astral-sh/ruff-action@v2
+        with:
+          args: --exclude backend/migrations .
 
