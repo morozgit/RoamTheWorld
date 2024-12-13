@@ -6,8 +6,13 @@ from fastapi.middleware.cors import CORSMiddleware
 import rollbar
 from rollbar.contrib.fastapi import add_to as rollbar_add_to
 from src.config.environment import settings
+from sqladmin import Admin
+from src.config.db.session import engine
+from auth.admin import UserAdmin, auth_backend, LocationAdmin, TrackAdmin
 
-app = FastAPI()
+app = FastAPI(
+    title="RoamTheWorld API documentation",
+)
 
 rollbar.init(access_token=settings.ROLLBAR_ACCESS_TOKEN, environment="production")
 rollbar_add_to(app)
@@ -22,6 +27,10 @@ app.add_middleware(
 
 app.include_router(location_router)
 app.include_router(track_router)
+admin = Admin(app=app, engine=engine, authentication_backend=auth_backend)
+admin.add_view(UserAdmin)
+admin.add_view(LocationAdmin)
+admin.add_view(TrackAdmin)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

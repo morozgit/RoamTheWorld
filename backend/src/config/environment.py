@@ -12,6 +12,9 @@ class Environment(BaseSettings):
     S3_SECRET_KEY: str
     S3_BUCKET_NAME: str
     S3_ENDPOINT_URL: str
+    USER_SECRET_KEY: str
+    DEFAULT_USERNAME: str
+    DEFAULT_PASSWORD: str
 
     @property
     def DATABASE_URL(self):
@@ -36,6 +39,18 @@ class Environment(BaseSettings):
     @property
     def S3_ENDPOINT_URL(self):
         return self.S3_ENDPOINT_URL
+
+    @property
+    def USER_SECRET_KEY(self):
+        return self.USER_SECRET_KEY
+    
+    @property
+    def DEFAULT_USERNAME(self):
+        return self.DEFAULT_USERNAME
+
+    @property
+    def DEFAULT_PASSWORD(self):
+        return self.DEFAULT_PASSWORD
 
     model_config = SettingsConfigDict(env_file=".env")
 

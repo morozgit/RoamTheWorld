@@ -2,6 +2,7 @@
   <div class="location-card" @click="goToDetail">
     <img :src="imageSrc" alt="Location Image" />
     <h3>{{ location.name }}</h3>
+    <h3>{{ location.description }}</h3>
   </div>
 </template>
 

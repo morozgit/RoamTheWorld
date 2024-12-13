@@ -22,7 +22,11 @@ class S3Client:
 
     def find_url_by_name(self, filename):
         public_urls = self.list_obj_urls()
+        filename_with_extension = filename + ".png"
+
         for url in public_urls:
-            if filename in url:
+            if filename_with_extension in url:
                 return url
+
+        print("No match found")
         return None

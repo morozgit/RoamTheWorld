@@ -25,7 +25,6 @@ class LocationRepository(AbstractRepository):
                 query = select(LocationModels)
                 result = await session.execute(query)
                 locations = result.scalars().all()
-                print(f"Locations fetched: {locations}")
                 if not locations:
                     return []
                 return [SLocation.model_validate(loc) for loc in locations]
