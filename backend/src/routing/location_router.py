@@ -20,6 +20,7 @@ async def add_location(
     try:
         s3 = S3Client()
         s3_url = s3.find_url_by_name(location.image_url)
+        print("s3_url", s3_url)
         location.image_url = s3_url
         location_repository = LocationRepository()
         location_id = await location_repository.add_one(location)

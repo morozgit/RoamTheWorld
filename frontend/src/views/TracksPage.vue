@@ -24,6 +24,7 @@ export default {
   async mounted() {
     const location_id = this.$route.params.location_id;
     await this.fetchLocationTracks(location_id);
+    console.log(this.$route);
     document.title = "Roam the world";
   },
   methods: {
