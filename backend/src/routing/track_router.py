@@ -32,8 +32,9 @@ async def add_track(
 @track_router.get("/{track_id}")
 async def get_track(track_id: int):
     try:
-        tracks = await TrackRepository.get_one(track_id)
-        return tracks
+        track_repository = TrackRepository()
+        track = await track_repository.get_one(track_id)
+        return track
     except Exception as e:
         rollbar.report_message(str(e))
         return -1
